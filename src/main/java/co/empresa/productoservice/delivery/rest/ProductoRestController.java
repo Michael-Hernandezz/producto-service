@@ -85,8 +85,7 @@ public class ProductoRestController {
      */
     @DeleteMapping("/productos")
     public ResponseEntity<Map<String, Object>> delete(@RequestBody Producto producto) {
-        productoService.findById(producto.getId())
-            .orElseThrow(() -> new ProductoNoEncontradoException(producto.getId()));
+        productoService.findById(producto.getId()).orElseThrow(() -> new ProductoNoEncontradoException(producto.getId()));
         productoService.delete(producto);
         Map<String, Object> response = new HashMap<>();
         response.put(MENSAJE, "El producto ha sido eliminado con éxito!");
@@ -103,8 +102,7 @@ public class ProductoRestController {
         if (result.hasErrors()) {
             throw new ValidationException(result);
         }
-        productoService.findById(producto.getId())
-                .orElseThrow(() -> new ProductoNoEncontradoException(producto.getId()));
+        productoService.findById(producto.getId()).orElseThrow(() -> new ProductoNoEncontradoException(producto.getId()));
         Map<String, Object> response = new HashMap<>();
         Producto productoActualizado = productoService.update(producto);
         response.put(MENSAJE, "El producto ha sido actualizado con éxito!");
